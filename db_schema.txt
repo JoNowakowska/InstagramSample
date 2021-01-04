@@ -21,5 +21,33 @@ Table comments {
   updated_at TIMESTAMP
   contents VARCHAR(240)
   user_id INTEGER [ref: > users.id]
+  postid INTEGER [ref: > posts.id]
+  lat REAL
+  lon REAL
+  caption VARCHAR(800)
+}
+
+Table likes {
+  id SERIAL [pk, increment]
+  created_at TIMESTAMP
+  user_id INTEGER [ref: > users.id]
   post_id INTEGER [ref: > posts.id]
+  comment_id INTEGER [ref: > comments.id]
+}
+
+Table photo_tags {
+  id SERIAL [pk, increment]
+  created_at TIMESTAMP
+  updated_at TIMESTAMP
+  post_id INTEGER [ref: > posts.id]
+  x_position INTEGER
+  y_position INTEGER
+  user_id INTEGER [ref: > users.id]
+}
+
+Table caption_tags {
+  id SERIAL [pk, increment]
+  created_at TIMESTAMP
+  post_id INTEGER [ref: > posts.id]
+  user_id INTEGER [ref: > users.id]
 }
